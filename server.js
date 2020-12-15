@@ -16,6 +16,7 @@ app.use(bodyParser.json());
 
 // Cors for cross origin allowance
 const cors = require('cors');
+const { json } = require('body-parser');
 app.use(cors());
 
 // Initialize the main project folder
@@ -25,7 +26,7 @@ app.use(express.static('website'));
 // Setup Server
 const port = 8000;
 
-const server = app.listen( port, ()=> console.log("Servers is on"));
+const server = app.listen( port, ()=> console.log(`Servers is on and listens on port: ${port}`));
 
 
 /**GET Route handling**/
@@ -36,28 +37,29 @@ const server = app.listen( port, ()=> console.log("Servers is on"));
  * @param res the response object to convey the data
  */
 
- handle_GET = (req, res) =>{
+handle_GET =  (req, res) =>{
     res.send(projectData);
-    console.log(projectData);
- }
+    //console.log(projectData);
+}
 
-app.get("/", handle_GET);
-
-
+app.get("/getdata", handle_GET);
 
 
 /** POST Route handling */
 
-//Handel_GET implementation
+//Handel_POST implementation
 /**
  * @param req the request object received 
  * @param res the response object to convey the data
  */
-handle_POST = (req, res)=>{
-    projectData["temperature"] = req.body[0];
-    projectData["date"] = req.body[1];
-    projectData["userResponse"] = req.body[2];
-    res.send(projectData);
+
+handle_POST = (req, res) => {
+    console.log("in server code:",req.body);
+    projectData["temperature"] = req.body.temperature;
+    projectData["date"] = req.body.date;
+    projectData["userResponse"] = req.body.userResponse;
+    console.log("in and data = ", projectData);
 }
 
 app.post("/add", handle_POST);
+
