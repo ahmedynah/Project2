@@ -33,8 +33,8 @@ const server = app.listen( port, ()=> console.log(`Servers is on and listens on 
 
 //Handel_GET implementation
 /**
- * @param req the request object received 
- * @param res the response object to convey the data
+ * @param {*} req the request object received 
+ * @param {*}res the response object to convey the data
  */
 
 handle_GET =  (req, res) =>{
@@ -42,15 +42,15 @@ handle_GET =  (req, res) =>{
     //console.log(projectData);
 }
 
-app.get("/getdata", handle_GET);
+app.get("/getData", handle_GET); // i tried to make the url the home page i.e("/") but the response is an html object which produce errors
 
 
 /** POST Route handling */
 
 //Handel_POST implementation
 /**
- * @param req the request object received 
- * @param res the response object to convey the data
+ * @param {*}req the request object received 
+ * @param {*} res the response object to convey the data
  */
 
 handle_POST = (req, res) => {
@@ -61,5 +61,5 @@ handle_POST = (req, res) => {
     console.log("in and data = ", projectData);
 }
 
-app.post("/add", handle_POST);
+app.post("/add", handle_POST); //upon debugging, writing any path did not produced errors as long as the body object is written properly
 
