@@ -59,6 +59,7 @@ handle_POST = (req, res) => {
     projectData["date"] = req.body.date;
     projectData["userResponse"] = req.body.userResponse;
     console.log("in and data = ", projectData);
+    res.send(projectData);
 }
 
 app.post("/add", handle_POST); //upon debugging, writing any path did not produced errors as long as the body object is written properly

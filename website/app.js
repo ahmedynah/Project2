@@ -57,6 +57,9 @@ const updateUI = async () => {
 
 /** 
  *Async Function to get data from weather API
+ * @param {string} base is the base URL
+ * @param {string} zipCode receives the value of the entered zip-code by user
+ * @param {string} API contains the API_KEY and extras like asking to receive data in metric units
  */
 getData = async (base, zipCode, API) =>{
     
@@ -75,7 +78,8 @@ getData = async (base, zipCode, API) =>{
  * Async Function to post data
  */
 /**
- * @param {*}  
+ * @param {string} url to route the  post request
+ * @param {*} data contains the object that we want to store in end-point  
  */
 postData = async (url='', data={}) =>{
     //console.log(data);  //for debugging
@@ -90,8 +94,8 @@ postData = async (url='', data={}) =>{
     try{
         //console.log(response.body); //for debugging
         const newData = await response.json();
-        //console.log("new data",newData); //for debugging
-        return newData;
+        console.log("new data",  newData); //for debugging
+        //return newData;
     }
     catch(error){
         //console.log(response.body); //for debugging
